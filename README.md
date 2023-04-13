@@ -25,3 +25,6 @@ docker build -t georchestra/k8s-initcontainer-envsubst .
 # test it locally (replace ${FQDN} occurrences in the datafeeder config file)
 docker run -u 1000:1000 -it --name envsubst --rm -v $(HOME)/dev/georchestra/datadir:/etc/georchestra -e FQDN=georchestra.mydomain.org -e SUBST_FILES="/etc/georchestra/datafeeder/frontend-config.json" georchestra/k8s-initcontainer-envsubst:latest
 ```
+
+> **Important note:** only the existing environment variables (i.e. the ones output by the `env` command) will be substituted. This includes environment variables defined to an empty string.  
+This means that if there are customs tokens in the `${token}` format in the processed files, these will stay untouched.
