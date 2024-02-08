@@ -22,3 +22,13 @@ jobs:
 
     - name: "Pushing latest to docker.io"
       run: docker push georchestra/k8s-initcontainer-envsubst:latest
+
+    - name: "Update Docker Hub Description for K8S initcontainer"
+      if: github.ref == 'refs/heads/main' && github.repository == 'georchestra/k8s-initcontainer-envsubst' && github.actor != 'dependabot[bot]' && github.event_name != 'pull_request'
+      uses: peter-evans/dockerhub-description@v3
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        repository: georchestra/k8s-initcontainer-envsubst
+        readme-filepath: ./DOCKER_HUB.md
+        short-description: 'K8S initcontainer module for the geOrchestra SDI'

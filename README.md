@@ -3,7 +3,7 @@
 ## Scope
 This is intended for use in the kubernetes helm chart for geOrchestra, as an initcontainer, once the datadir has been cloned (and before the pods are started).
 
-## Whaat ? Why ?
+## What ? Why ?
 It all began with the idea to use environment variables in the datadir, wherever possible.
 
 Thing is, while they are resolved on most of the files, there are a few cases when it isn't that smooth. Namely for now, datafeeder/frontend-config.json, the conf file for the ogc-api-records microservice for geonetwork, and more important, security-proxy/target-mappings.properties.
